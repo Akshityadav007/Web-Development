@@ -6,6 +6,12 @@
         => In this function also we are using function callback feature.
     3.  There is another function 'setInterval(fn ,time)', here 'fn' is called after each 'time' miliseconds.
 
+    4. 
+        => Arrow functions are functions which we can define using ' () => '. It doesn't have it's own context (this, arguments, super), it inherits the context of the surrounding code.
+        => Since setTimeout takes only one function as an argument, you can use an arrow function (or any function) to encapsulate multiple statements or function calls within that single function. 
+            -> This way, you can execute multiple actions after the specified delay.
+
+
 */
 
 
