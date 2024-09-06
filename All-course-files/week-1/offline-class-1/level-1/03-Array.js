@@ -103,3 +103,31 @@ function sortExample(arr) {
   console.log("After sort:", arr);
 }
 sortExample([5, 2, 3, 4, 1]);
+
+
+/*
+        Answers
+        
+    Original Array: [ 1, 2, 3 ]
+    After push: [ 1, 2, 3, 4 ]
+    Original Array: [ 1, 2, 3 ]
+    After pop: [ 1, 2 ]
+    Original Array: [ 1, 2, 3 ]
+    After shift: [ 2, 3 ]
+    Original Array: [ 1, 2, 3 ]
+    After unshift: [ 0, 1, 2, 3 ]
+    Original Arrays: [ 1, 2, 3 ] [ 4, 5, 6 ]
+    After concat: [ 1, 2, 3, 4, 5, 6 ]
+    Original Array: [ 1, 2, 3 ]
+    1 0
+    2 1
+    3 2
+    Original Array: [ 1, 2, 3 ]
+    After map: [ 2, 4, 6 ]
+    Original Array: [ 1, 2, 3, 4, 5 ]
+    After filter: [ 4, 5 ]
+    Original Array: [ 1, 2, 3, 4, 5 ]
+    After find: 4
+    Original Array: [ 5, 2, 3, 4, 1 ]
+    After sort: [ 1, 2, 3, 4, 5 ]
+*/

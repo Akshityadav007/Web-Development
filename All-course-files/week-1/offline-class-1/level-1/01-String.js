@@ -74,3 +74,29 @@ function toLower(str) {
   console.log("After toLowerCase:", str.toLowerCase());
 }
 toLower("Hello World");
+
+
+/*
+        Answers
+
+  Original String: Hello World
+  Length: 11
+  Original String: Hello World
+  Index: 6
+  Original String: Hello World World
+  Index: 12
+  Original String: Hello World
+  After slice: Hello
+  Original String: Hello World
+  After substring: Hello
+  Original String: Hello World
+  After replace: Hello JavaScript
+  Original String: Hello World
+  After split: [ 'Hello', 'World' ]
+  Original String:  Hello World
+  After trim: Hello World
+  Original String: Hello World
+  After toUpperCase: HELLO WORLD
+  Original String: Hello World
+  After toLowerCase: hello world
+*/

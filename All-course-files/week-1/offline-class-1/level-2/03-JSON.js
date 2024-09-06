@@ -15,3 +15,12 @@ const sampleJSONString =
   '{"key": "value", "number": 42, "nested": {"nestedKey": "nestedValue"}}';
 
 jsonMethods(sampleJSONString);
+
+
+/*
+      Answers
+      
+  Original JSON String: {"key": "value", "number": 42, "nested": {"nestedKey": "nestedValue"}}
+  After JSON.parse(): { key: 'value', number: 42, nested: { nestedKey: 'nestedValue' } }
+  After JSON.stringify(): {"key":"value","number":42,"nested":{"nestedKey":"nestedValue"}}
+*/

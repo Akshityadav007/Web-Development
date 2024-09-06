@@ -28,3 +28,21 @@ const sampleObject = {
 };
 
 objectMethods(sampleObject);
+
+
+
+/*
+          Answers
+          
+  Original Object: { key1: 'value1', key2: 'value2', key3: 'value3' }
+  After Object.keys(): [ 'key1', 'key2', 'key3' ]
+  After Object.values(): [ 'value1', 'value2', 'value3' ]
+  After Object.entries(): [ [ 'key1', 'value1' ], [ 'key2', 'value2' ], [ 'key3', 'value3' ] ]
+  After hasOwnProperty(): false
+  After Object.assign(): {
+    key1: 'value1',
+    key2: 'value2',
+    key3: 'value3',
+    newProperty: 'newValue'
+  }
+*/
