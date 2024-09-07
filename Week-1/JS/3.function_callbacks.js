@@ -10,7 +10,13 @@
         => Arrow functions are functions which we can define using ' () => '. It doesn't have it's own context (this, arguments, super), it inherits the context of the surrounding code.
         => Since setTimeout takes only one function as an argument, you can use an arrow function (or any function) to encapsulate multiple statements or function calls within that single function. 
             -> This way, you can execute multiple actions after the specified delay.
+        
+    5. 
+        => In asynchronous function, JS delegates async calls to another thread and keeps the current thread running for the next synchronous calls.
+        => Even if the async thread has already completed the task and is ready to return the result, if the current sync thread is doing some task, the async thread/s will wait in the 'callback queue' to return the result and will return the result after the current thread gets completed.
 
+            
+    ** Note : To see the running of your JS program, run your program on http://latentflip.com/loupe  **
 
 */
 

@@ -11,4 +11,7 @@ console.log("Hello World!");
     2) Print biggest number in an array
     3) Print all the male people's first name given a complex object.
     4) Reverse all numbers in an array.
+
+
+    ** Note : To see the running of your JS program, run your program on http://latentflip.com/loupe  **
 */
