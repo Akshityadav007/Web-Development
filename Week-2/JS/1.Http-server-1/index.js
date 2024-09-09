@@ -11,7 +11,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.post('/', function(req, res){
+app.get('/', function(req, res){
     console.log(req.body);
     res.send("Hello World");
 })
@@ -19,6 +19,3 @@ app.post('/', function(req, res){
 app.listen(port, () => {
     console.log("App listening to port", port);
 })
-
-
-// continue from week 2.2/ 2:04
