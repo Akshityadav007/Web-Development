@@ -11,3 +11,5 @@
     -> The fetch function only rejects a Promise if there's a network error. 
     -> For other HTTP errors (e.g., 404, 500), you need to manually check the response status as shown in the examples above.
 */
+
+// Fetch was introduced in HTML way. It was used to show how we connect frontend with backend while making an API call using Fetch.
