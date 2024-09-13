@@ -8,5 +8,6 @@
     -> Response Formats: You can handle different response types like JSON, text, blob, etc.
 
     Error Handling:
-The fetch function only rejects a Promise if there's a network error. For other HTTP errors (e.g., 404, 500), you need to manually check the response status as shown in the examples above.
+    -> The fetch function only rejects a Promise if there's a network error. 
+    -> For other HTTP errors (e.g., 404, 500), you need to manually check the response status as shown in the examples above.
 */
