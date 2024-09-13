@@ -1,0 +1,2 @@
+1) Mongo_db_connection_string : mongodb+srv://admin:admin123@cluster0.y9pwl.mongodb.net/
+2) Postgres_db_coonection_string : postgresql://test_owner:zAweKU21HOlX@ep-black-paper-a1cpyk11.ap-southeast-1.aws.neon.tech/test?sslmode=require
