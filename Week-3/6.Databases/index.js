@@ -17,9 +17,9 @@ mongoose.connect(
 
 // need to define schema first in mongo db
 const User = mongoose.model("users", {
-      name: String,
-      email: String,
-      password: String,
+    name: String,
+    email: String,
+    password: String,
 });
 
 const app = express();
@@ -27,28 +27,26 @@ app.use(express.json());
 
 
 app.post("/signup", async function (req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
-  const name = req.body.name;
+    const username = req.body.username;
+    const password = req.body.password;
+    const name = req.body.name;
 
-  const isExistingUser = await User.findOne({email : username});
+    const isExistingUser = await User.findOne({email : username});
 
-  if(isExistingUser){
-    return res.status(400).send("Username already exists!");
-  }
+    if(isExistingUser){
+      return res.status(400).send("Username already exists!");
+    }
 
-  const user = new User({
-    name : name,
-    email : username,
-    password : password
-  })
+    const user = new User({
+      name : name,
+      email : username,
+      password : password
+    })
 
-  user.save();
-  res.json({
-    "msg" : "User created successfully!"
-  })
-
-  
+    user.save();
+    res.json({
+      "msg" : "User created successfully!"
+    })  
 });
 
 

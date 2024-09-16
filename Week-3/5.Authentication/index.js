@@ -32,7 +32,7 @@
 
         2. GET/users
             Headers = authorization header
-            - returns an array of all users is user is signed in (token is correct) else returns 403 status code.
+            - returns an array of all users if user is signed in (token is correct) else returns 403 status code.
 
 
     * Note : To read more about jwt and it's functions, go to https://www.npmjs.com/package/jsonwebtoken .
