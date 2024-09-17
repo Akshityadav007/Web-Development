@@ -39,11 +39,119 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
+
+const express = require('express');
+const fs = require("fs");
+const { v4: uuidv4 } = require('uuid');
+const bodyParser = require('body-parser');
+
+const app = express();
+// const port = 3000;
+const todoFilePath = 'todos.json';
+
+app.use(bodyParser.json());
+
+// Get all TODOs
+app.get('/todos', (req, res) => {
+  fs.readFile(todoFilePath, 'utf-8', (err, data) => {
+    if (err) throw err;
+    res.status(200).json(JSON.parse(data));
+  });
+});
+
+// Get a specific todo
+app.get('/todos/:id', (req, res) => {
+  fs.readFile(todoFilePath, "utf-8", (err, data) => {
+    if(err) throw err;
+    else{
+      const todoList = JSON.parse(data);
+      const currId = req.params.id;
+      const index = todoList.findIndex(todo => todo.id === currId);
+
+      if(index >= 0) res.status(200).send(todoList[index]);
+      else res.status(404).send();
+    }
+  })
+})
+
+// Add a new TODO
+app.post('/todos', (req, res) => {
+  fs.readFile(todoFilePath, 'utf-8', (err, data) => {
+    if (err) throw err;
+    else{
+      const jsonArray = JSON.parse(data);
+
+      const newId = uuidv4();
+
+      const newTodo = {
+        id: newId,
+        title: req.body.title,
+        completed: req.body.completed,
+        description: req.body.description
+      };
+
+      jsonArray.push(newTodo);
+
+      fs.writeFile(todoFilePath, JSON.stringify(jsonArray), (err) => {
+        if (err) throw err;
+        else res.status(201).json({id : newId});
+      });
+    }
+  });
+});
+
+// Update a TODO
+app.put('/todos/:id', (req, res) => {
+  fs.readFile(todoFilePath, 'utf-8', (err, data) => {
+    if (err) throw err;
+    else{
+      const jsonArray = JSON.parse(data);
+      const updateId = req.params.id; // UUID is a string
+      const index = jsonArray.findIndex(todo => todo.id === updateId);
+
+      if (index >= 0) {
+        jsonArray[index].completed = req.body.completed;
+        jsonArray[index].title = req.body.title;
+
+        fs.writeFile(todoFilePath, JSON.stringify(jsonArray), (err) => {
+          if (err) throw err;
+          else res.status(200).send('OK!');
+        });
+      } 
+      else res.status(404).send();
+    }
+  });
+});
+
+// Delete a TODO
+app.delete('/todos/:id', (req, res) => {
+  fs.readFile(todoFilePath, 'utf-8', (err, data) => {
+    if (err) throw err;
+    else {
+      let jsonArray = JSON.parse(data);
+      const deleteId = req.params.id; // UUID is a string
+      const index = jsonArray.findIndex(todo => todo.id === deleteId);
+
+      if (index >= 0) {
+        jsonArray.splice(index, 1);
+
+        fs.writeFile(todoFilePath, JSON.stringify(jsonArray, null, 2), (err) => {
+          if (err) throw err;
+          else res.status(200).send('OK!');
+        });
+      } 
+      else res.status(404).send('Not Found');
+    } 
+  });
+});
+
+
+// for all other requests, return 404
+app.use((req, res, next) => {
+  res.status(404).send();
+})
+
+// app.listen(port);
+
   
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+module.exports = app;

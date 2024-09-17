@@ -1,0 +1,2 @@
+Hello there! From sample.txt.
+This is appended text.
