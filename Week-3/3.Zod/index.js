@@ -21,7 +21,7 @@ const PORT = 3000;
 // we can define our own schema - i.e. the way how we expect our input to be
 const schema = zod.array(zod.number());         // we'll expect array of numbers
 
-app.use(express.json());
+app.use(express.json());        // global middelware
 
 app.post('/health-checkup' ,(req, res) => {
     // kidneys = [1, 2]
