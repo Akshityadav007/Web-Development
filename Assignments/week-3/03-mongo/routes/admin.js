@@ -20,7 +20,7 @@ router.post('/signup', async function (req, res) {
     res.json({'message' : 'Admin created successfully'});
 });
 
-router.post('/courses', adminMiddleware, (req, res) => {
+router.post('/courses', adminMiddleware, async (req, res) => {
     // Implement course creation logic
 
     // details of course
@@ -30,7 +30,7 @@ router.post('/courses', adminMiddleware, (req, res) => {
     const imageLink = req.body.imageLink;
 
     // insert the course details in the account in db
-    const newCourse = Course.create({
+    const newCourse = await Course.create({
         title,
         description,
         price,

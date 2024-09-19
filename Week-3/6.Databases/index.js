@@ -1,5 +1,6 @@
 /*
     -> Just like express let's us create a http server, jsonwebtoken let's us create jwts, mongoose let's us to connect to mongodb database.
+    
 */
 
 

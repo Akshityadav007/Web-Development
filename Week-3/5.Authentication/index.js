@@ -15,6 +15,23 @@
         4. Local Storage: Local storage(browser) is used to store the JWT of the user to ensure the user is logged in untill he logs out.
             -> Client send request -> backend sends request to database to authenticate -> db returns a JWT after authenticating -> backend returns the JWT to browser that stores it in local storage to ensure the user is logged in permanently.
             => This way user doesn't have to send authorisation request everytime he wants to use it.
+    
+
+
+*/
+
+// JSON Web Tokens
+/*
+  -> Imagine JWTs like a checkbook.
+  -> There are 3 things in JWT:
+    1) Generate (sign) - Similar to a bank issuing a checkbook, a backend server generates JWT.
+    2) Decode - If we have a checkbook, others can copy it after looking, i.e. decoding.
+    3) Verify - Even if they have copied/decoded the JWT, only the backend server which has the original password (original checkbook generator machine) can verify it.
+              - Note : Unlike decode fn, Verify function throws error if JWT is malformed.
+              
+  * Note : To read more about jwt and it's functions, go to https://www.npmjs.com/package/jsonwebtoken .
+  * Note : We can decode the contents of jwt tokens by pasting it on https://www.jwt.io
+
 */
 
 
@@ -33,10 +50,7 @@
         2. GET/users
             Headers = authorization header
             - returns an array of all users if user is signed in (token is correct) else returns 403 status code.
-
-
-    * Note : To read more about jwt and it's functions, go to https://www.npmjs.com/package/jsonwebtoken .
-    * Note : We can decode the contents of jwt tokens by pasting it on https://www.jwt.io
+    
 */
 
 const express = require("express");
