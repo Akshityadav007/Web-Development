@@ -1,0 +1,52 @@
+<!-- 
+    In this program, we will perform the same operation of sum using a backend server.
+    The frontend will only have to call the function and get the result from backend.
+-->
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    // ugly way using async chain
+    // function populateDiv(){
+    //     const a = document.getElementById("firstNum").value;
+    //     const b = document.getElementById("secondNum").value;
+
+            // could have used a better library i.e. axios
+    //     fetch("http://localhost:3000/sum?a=" + a + "&b=" + b)     // make sure to host a local server first to test this
+    //     // the above code should atleast send the request to get the sum
+    //     // fetch is an async call, that's why we need to handle it in async way
+    //         .then(function(response){
+    //             response.text()                 // even this response is an async call
+    //                 .then(function (ans){
+    //                     // console.log(ans);
+    //                     document.getElementById("finalSum").innerHTML = "The sum is: " + ans;
+    //                 })
+    //         });
+    // }
+
+  
+    // a cleaner way using async await
+    async function populateDiv(){ 
+        const a = document.getElementById("firstNum").value;
+        const b = document.getElementById("secondNum").value;
+
+        const response = await fetch("http://localhost:3000/sum?a=" + a + "&b=" + b);
+        const result = await response.text();
+        document.getElementById("finalSum").innerHTML = "The sum is: " + result; 
+    }
+</script>
+<body>
+    <input id= "firstNum" type = 'text' placeholder="First number"></input>
+    <br> <br>
+    <input id = "secondNum" type = 'text' placeholder="Last number"></input>
+    <br> <br>
+    <button onclick="populateDiv()">Calculate Sum</button>
+    <br> <br>
+    <div id = "finalSum"></div>
+</body>
+</html>

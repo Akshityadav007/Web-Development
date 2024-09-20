@@ -1,0 +1,53 @@
+<!-- 
+    *** Important for interview ****
+
+    We will see debouncing and throttling in this.
+    1. Debouncing : 
+        -> Debouncing ensures that a function is invoked after a certain period of inactivity. 
+        -> The function is only called after the specified delay time has passed without any new events triggering it again.
+        -> This is done in order to save the browser from making unnecessary calls.
+
+    2. Throttling:
+        -> Throttling ensures that a function is invoked at regular intervals, regardless of how many events are triggered.
+        -> It limits the rate of execution to a set interval.
+    
+    => So, here we won't be using the button to get the sum, we'll see how to implement debouncing and throttling for this.
+    -> Using debouncing we can get the sum when the user stops typing after certain period (1000ms in this case).
+-->
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let timeout;
+    function debouncePopulateDiv(){
+        // delay the call to populateDiv until I've not called for 100ms
+        // and I've been atleast called once     
+
+        clearTimeout(timeout);    // this is done in case the user starts writing again (before 100ms), the previous clock should be stopped to reset the timer and start a new clock when the function is called again.
+        timeout = setTimeout(() => {populateDiv()}, 1000);
+
+   }
+
+    async function populateDiv(){ 
+        const a = document.getElementById("firstNum").value;
+        const b = document.getElementById("secondNum").value;
+
+        const response = await fetch("http://localhost:3000/sum?a=" + a + "&b=" + b);
+        const result = await response.text();
+        document.getElementById("finalSum").innerHTML = "The sum is: " + result; 
+    }
+</script>
+<body>
+    <!-- oninput function calls a fn whenever we start typing in the input -->
+    <input oninput = "debouncePopulateDiv()" id = "firstNum" type = 'text' placeholder="First number"></input>
+    <br> <br>
+    <input oninput = "debouncePopulateDiv()" id = "secondNum" type = 'text' placeholder="Last number"></input>
+    <br> <br>
+    <div id = "finalSum"></div>
+</body>
+</html>
