@@ -1,0 +1,10 @@
+#Build React project
+    - In terminal (inside the folder where you want to build the project)
+    - Run command 'npm create vite@latest' to get the boilerplate code build for you.
+    - Please note to have node installed already to use 'npm'.
+    - Follow the instructions after running the above command.
+
+#Run React project
+    - In terminal (inside the project folder)
+    - First run 'npm install' to install any dependencies/libraries if required to be installed
+    - Then run 'npm run dev' to run the project.
