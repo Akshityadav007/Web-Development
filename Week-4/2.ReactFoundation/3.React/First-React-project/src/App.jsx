@@ -1,4 +1,4 @@
-// jsx files (javascript XML) are a combination of javascript and html, hence they support html along with js
+// jsx files (javascript XML) are a combination of javascript and xml
 
 import { useState } from 'react'
 import './App.css'
