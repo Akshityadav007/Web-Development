@@ -4,58 +4,109 @@
 <head>
   <script>
     let globalId = 1;
-    let todoState = [];
-    let oldTodoState = [];
+    let todoState = [];           // contains current todos
+    let oldTodoState = [];        // contains older todos
 
-    function addTodoToDom() {
-      
+    function createChild(title, description, id) {
+      const child = document.createElement("div");
+
+      const titleDiv = document.createElement("div");
+      titleDiv.innerHTML = title;
+
+      const descriptionDiv = document.createElement("div");
+      descriptionDiv.innerHTML = description;
+
+      const markDoneButton = document.createElement("button");
+      markDoneButton.innerHTML = "Mark as done";
+      markDoneButton.setAttribute("onclick", `markAsDone(${id})`);
+
+      child.appendChild(titleDiv);
+      child.appendChild(descriptionDiv);
+      child.appendChild(markDoneButton);
+      child.setAttribute("id", id);
+
+      return child;
+    }
+
+    function addTodoToDom(title, description, id) {
+      const parent = document.getElementById("todos");
+      parent.appendChild(createChild(title, description, id));
     }
 
     function removeTodoFromDom(todo) {
-      
+      const element = document.getElementById(todo.id);
+      if (element) {
+        element.parentNode.removeChild(element);
+      }
     }
 
     function updateTodoInDom(oldTodo, newTodo) {
-        
+      const element = document.getElementById(oldTodo.id);
+      if (element) {
+        element.children[0].innerHTML = newTodo.title;
+        element.children[1].innerHTML = newTodo.description;
+        element.children[2].innerHTML = newTodo.completed ? "Done" : "Mark as completed";
+      }
     }
 
     function updateState(newTodos) {
-      // calculate the diff b/w newTodos and oldTodos.
-      // More specifically, find out what todos are - 
-      // 1. added
-      // 2. deleted
-      // 3. updated
       const added = [];
       const deleted = [];
       const updated = [];
-      // calculate these 3 arrays
-      // call addTodo, removeTodo, updateTodo functions on each of the
-      // elements
-      oldTodoState = newTodos;
+
+      // Detect added todos
+      newTodos.forEach((todo) => {
+        const found = oldTodoState.find(oldTodo => oldTodo.id === todo.id);
+        if (!found) {
+          added.push(todo);
+        }
+      });
+
+      // Detect deleted todos
+      oldTodoState.forEach((oldTodo) => {
+        const found = newTodos.find(todo => todo.id === oldTodo.id);
+        if (!found) {
+          deleted.push(oldTodo);
+        }
+      });
+
+      // Detect updated todos
+      newTodos.forEach((todo) => {
+        const oldTodo = oldTodoState.find(old => old.id === todo.id);
+        if (oldTodo && (oldTodo.title !== todo.title || oldTodo.description !== todo.description)) {
+          updated.push({ oldTodo, newTodo: todo });
+        }
+      });
+
+      // Call addTodo, removeTodo, updateTodo functions on each of the elements
+      added.forEach(todo => addTodoToDom(todo.title, todo.description, todo.id));
+      deleted.forEach(todo => removeTodoFromDom(todo));
+      updated.forEach(todo => updateTodoInDom(todo.oldTodo, todo.newTodo));
+
+      oldTodoState = [...newTodos]; // Preserve the state for future updates
     }
 
     function addTodo() {
       const title = document.getElementById("title").value;
       const description = document.getElementById("description").value;
-      todoState.push({
+      const newTodo = {
         title: title,
         description: description,
         id: globalId++,
-      })
+      };
+      
+      todoState.push(newTodo);
       updateState(todoState);
     }
   </script>
 </head>
 
 <body>
-  <input type="text" id="title" placeholder="Todo title"></input> <br /><br />
-  <input type="text" id="description" placeholder="Todo description"></input> <br /><br />
+  <input type="text" id="title" placeholder="Todo title"><br /><br />
+  <input type="text" id="description" placeholder="Todo description"><br /><br />
   <button onclick="addTodo()">Add todo</button>
-  <br /> <br />
-
-  <div id="todos">
-
-  </div>
+  <br /><br />
+  <div id="todos"></div>
 </body>
 
 </html>
