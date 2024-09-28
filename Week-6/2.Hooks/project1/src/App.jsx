@@ -7,17 +7,15 @@ import { useEffect } from 'react';
 function App() {
   const [todos, setTodos] = useState([]);
 
-  // this takes effect after 10 seconds
+  // this takes effect once 'todos' is mounted and thus again takes effect depending on 'dependency array' conditions
   useEffect(() => {
-    setTimeout(() => {
       // fetch("https://sum-server.100xdevs.com/todos")         // this site API is no longer working
       fetch("https://jsonplaceholder.typicode.com/todos")       // this API gives you free todos
       .then(async (res) => {
         const json = await res.json();
         setTodos(json);
       })
-    }, 10 * 1000)
-  }, [todos]);                           // dependency array (we don't need it for this project)
+  }, []);                           // dependency array (we don't need it for this project) - takes 'state' variable as input
 
   return (
     <div>
