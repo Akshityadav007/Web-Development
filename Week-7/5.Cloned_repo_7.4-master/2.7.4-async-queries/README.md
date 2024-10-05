@@ -1,0 +1,1 @@
+- In this we learn to fetch data from backend from the 'asynchronous data queries'
