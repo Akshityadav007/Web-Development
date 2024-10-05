@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { CountContext } from '../../../2.PropDrilling/project1/src/context';
+import { CountContext } from './context';
 import { useContext } from 'react';
 
 // Create a context.jsx file

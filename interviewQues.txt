@@ -1,0 +1,4 @@
+1) What is debouncing and throttling? How do you implement it? (week - 4)
+2) Why do you use the context API ? (week - 7)
+    A. To make rendering more performant. ❌
+    B. To make syntax cleaner/get rid of prop drilling.  ✅  
