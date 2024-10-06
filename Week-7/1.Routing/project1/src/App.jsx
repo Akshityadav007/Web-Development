@@ -37,7 +37,7 @@ function App() {
 }
 
 
-// 3. This is the right way to move across routes - using hook 'useNavigation()'
+// 3. This is the right way to move across routes - using hook 'useNavigate()'
 function Appbar(){
   const navigate = useNavigate();
 
