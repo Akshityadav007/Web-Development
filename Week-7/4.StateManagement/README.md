@@ -14,18 +14,18 @@
         3. Context API: For managing global state across multiple, deeply nested components.
         4. Third-party libraries(Recoil, Redux, Zustand, etc.): When your app has complex state requirements, involving actions,reducers, or advanced data sharing.
 
-| Feature                    | **Recoil**                                               | **Redux**                                                      | **Zustand**                            |
-|----------------------------|----------------------------------------------------------|----------------------------------------------------------------|----------------------------------------|
-| **Complexity**             | Medium                                                   | High (requires actions, reducers)                              | Low                                    |
-| **Boilerplate**            | Minimal                                                  | High                                                           | Minimal                                |
-| **API Simplicity**         | Easy (Atoms, Selectors)                                  | Complex (Actions, Reducers, Store)                             | Very simple (Hooks-based)              |
-| **Async State Handling**   | Built-in with Selectors                                  | Requires middleware (e.g., Thunk)                              | Supports async natively with hooks     |
-| **Re-render Optimization** | Fine-grained (only components using atoms re-render)     | Less fine-grained (global store changes cause more re-renders) | Fine-grained                           |
-| **Scalability**            | Good for medium to large apps                            | Excellent for large apps                                       | Suitable for small to medium apps      |
-| **Community Support**      | Growing but relatively new                               | Mature with strong ecosystem                                   | Small but growing                      |
-| **Learning Curve**         | Low to Medium                                            | Steep                                                          | Very Low                               |
-| **Integration with React** | Designed for React                                       | Designed for React, but requires setup                         | React-focused, minimal configuration   |
-| **Global State**           | Atom-based (no central store)                            | Centralized Store                                              | Centralized Store (but simpler)        |
+| Feature                    | **Recoil**                                               | **Redux**                                                      |
+|----------------------------|----------------------------------------------------------|----------------------------------------------------------------|
+| **Complexity**             | Medium                                                   | High (requires actions, reducers)                              |
+| **Boilerplate**            | Minimal                                                  | High                                                           |
+| **API Simplicity**         | Easy (Atoms, Selectors)                                  | Complex (Actions, Reducers, Store)                             |
+| **Async State Handling**   | Built-in with Selectors                                  | Requires middleware (e.g., Thunk)                              |
+| **Re-render Optimization** | Fine-grained (only components using atoms re-render)     | Less fine-grained (global store changes cause more re-renders) |
+| **Scalability**            | Good for medium to large apps                            | Excellent for large apps                                       |
+| **Community Support**      | Growing but relatively new                               | Mature with strong ecosystem                                   |
+| **Learning Curve**         | Low to Medium                                            | Steep                                                          |
+| **Integration with React** | Designed for React                                       | Designed for React, but requires setup                         |
+| **Global State**           | Atom-based (no central store)                            | Centralized Store                                              |
 
 
 

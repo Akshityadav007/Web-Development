@@ -1,6 +1,11 @@
 
 export function Question1(){
     return <div>
-        Question 1
+        <Profile></Profile>
+    </div>
+}
+
+function Profile(){
+    return <div>
     </div>
 }
