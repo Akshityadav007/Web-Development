@@ -10,7 +10,7 @@ const PORT = 3000;
 
 // paste the database name at the last of connection string after '/'
 mongoose.connect(
-  "mongodb+srv://admin:admin123@cluster0.y9pwl.mongodb.net/userAppNew",
+  "GET_YOUR_URL_HERE_AND_PASTE",
 );
 
 

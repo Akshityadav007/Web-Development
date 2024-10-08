@@ -1,8 +1,3 @@
-# Build Clone of Youtube (assignment)
-    - using Tailwind CSS -> (https://tailwindcss.com/docs/installation)
-    - using Next.js + React.js
-    - to create a next.js application use 'npx create-next-app@latest' in terminal.
-
 # Things to know in a frontend framework
     1. Flex
     2. Grids
