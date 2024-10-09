@@ -1,7 +1,7 @@
 const express = require("express");
-import {z} from "zod";
-import {Account, User} from "../db";
-import { authMiddleware } from "../middleware";
+const z =  require("zod");
+const { Account, User } = require("../db");
+const { authMiddleware } = require("../middleware");
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.JWT_SECRET;
@@ -28,7 +28,7 @@ const signinSchema = z.object({
 const updatedBodySchema = z.object({
     password: z.string().min(6).optional(),
     firstName: z.string().trim().optional(),
-    lastName: z.string.trim().optional()
+    lastName: z.string().trim().optional()
 })
 
 
@@ -41,41 +41,52 @@ router.post("/signup", async (req, res) => {
     }
     
     // 2. check if user already exists in database
-    const user = await User.findOne({ username: req.body.username });
-    if(user){
-        // user already exists
-        return res.status(409).json({message: "Email already taken"});
+    try{
+        const user = await User.findOne({ username: req.body.username });
+        if(user){
+            // user already exists
+            return res.status(409).json({message: "Email already taken"});
+        }
+
+        // 3. password hashing
+        const newUser = new User({
+            username : req.body.username,
+            firstName : req.body.firstName,
+            lastName : req.body.lastName
+        })
+
+        const plainTextPassword = req.body.password;
+        const hashedPassword = await newUser.createHash(plainTextPassword);
+        newUser.password = hashedPassword;
+
+        // 4. create user in mongo db
+        const dbUser = await newUser.save();            // we can also use '.create()' method in step 3, but that will result in two '.save'
+        const userId = dbUser._id;
+        //5. Generate JWT token
+        const token = jwt.sign({ userId: userId }, SECRET_KEY);
+
+
+        // 6. create new account an assign random balance to it
+        try{
+            await Account.create({
+                userId,
+                balance: Math.floor(1 + Math.random() * 10000)
+            })
+        }
+        catch(err){
+            return res.status(500).json({message: "Account creation unsuccessful! Internal Error"});
+        }
+
+        return res.status(200).json({
+            message: "User created successfully",
+            token: token
+        });
     }
-
-    // 3. password hashing
-    const newUser = new User({
-        username : req.body.username,
-        firstName : req.body.firstName,
-        lastName : req.body.lastName
-    })
-
-    const plainTextPassword = req.body.password;
-    const hashedPassword = await newUser.createHash(plainTextPassword);
-    newUser.password = hashedPassword;
-
-    // 4. create user in mongo db
-    const dbUser = await newUser.save();            // we can also use '.create()' method in step 3, but that will result in two '.save'
-
-    //5. Generate JWT token
-    const token = jwt.sign({ userId: dbUser._id }, SECRET_KEY);
-
-
-    // 6. create new account an assign random balance to it
-    await Account.create({
-        userId,
-        balance: 1 + Math.random() * 10000
-    })
-
-    return res.status(200).json({
-        message: "User created successfully",
-        token: token
-    });
-
+    catch(err){
+        console.log(err);
+        return res.status(500).json({message: "Signup error | Internal server error!"});
+    }
+    
 });
 
 
@@ -116,7 +127,7 @@ router.post("/signin", async (req, res) => {
 });
 
 
-router.put('/user', authMiddleware, async (req, res) => {
+router.put('/', authMiddleware, async (req, res) => {
 
     // 1. input validation
     const response = updatedBodySchema.safeParse(req.body);
@@ -124,21 +135,27 @@ router.put('/user', authMiddleware, async (req, res) => {
         return res.status(411).json({message: "Password is too small"});
     }
 
-    // 2. make hash of the updated password  
-    if(req.body.password){
-        const user = await User.findById(req.userId);
-        const password_hash = await user.createHash(req.body.password);
-        req.body.password = password_hash;
-    }
+    try{
+        // 2. make hash of the updated password  
+        if(req.body.password){
+            const user = await User.findById(req.userId);
+            const password_hash = await user.createHash(req.body.password);
+            req.body.password = password_hash;
+        }
 
-    // 3. update changes
-    await User.updateOne({ id: req.userId }, { $set: req.body });
-    
-    return res.status(200).json({message: "Updated successfully"});
+        // 3. update changes
+        await User.updateOne({ id: req.userId }, { $set: req.body });
+        
+        return res.status(200).json({message: "Updated successfully"});
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json({message: "Could not update | Internal server error"});
+    }
 });
 
 
-router.get('/user/bulk', async (req, res) => {
+router.get('/bulk', async (req, res) => {
     const name = req.query.filter || "";  
 
     try {
@@ -147,13 +164,15 @@ router.get('/user/bulk', async (req, res) => {
             $or: [
                 { firstName: 
                     {
-                        "$regex": /name/i          // i = case-insensitive
+                        "$regex":name,
+                        "$options": "i"          // i = case-insensitive
 
                     } 
                 },
                 { lastName: 
                     {
-                        "$regex": /name/i          // i = case-insensitive
+                        "$regex": name,
+                        "$options": "i"          // i = case-insensitive
                     } 
                 }
             ]

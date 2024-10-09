@@ -1,17 +1,20 @@
 const mongoose = require("mongoose");
-require('dotenv').config();                     // for .env file
-const MONGO_URI = "process.env.MONGO_URI";
-const argon2 = require("argon2");               // hashing
+require('dotenv').config(); // for .env file
+const MONGO_URI = process.env.MONGO_URI; // Ensure this is correctly set in your .env file
+const argon2 = require("argon2"); // hashing
 
 const connectDB = async () => {
-    try{
+    try {
         await mongoose.connect(MONGO_URI);
+        console.log("MongoDB connected successfully");
+    } catch (err) {
+        console.error('MongoDB connection failed:', err.message); // Improved error message
+        process.exit(1); // Exit with failure
     }
-    catch(err){
-        console.error('MongoDB connection failed', err);
-        process.exit(1);        // exit with failure
-    }
-}
+};
+
+// Call the function to connect to the database
+connectDB();
 
 
 // schema initialization

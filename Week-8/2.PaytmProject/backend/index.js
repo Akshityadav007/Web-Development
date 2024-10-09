@@ -9,4 +9,6 @@ const mainRouter = require("./routes/index");
 
 app.use("/api/v1", mainRouter);
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("App is listening to port 3000");
+});

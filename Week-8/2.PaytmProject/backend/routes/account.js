@@ -1,19 +1,24 @@
 const express = require("express");
 const { authMiddleware } = require("../middleware");
-const { default: mongoose } = require("mongoose");
-const Account = require("./db");
+const mongoose  = require("mongoose");
+const {Account} = require("../db");
 
 const router = express.Router();
 
 
-router.get("/balance", async (req, res) => {
-    const account = await Account.findOne({
-        userId: req.userId
-    })
-
-    res.json({
-        balance: account.balance
-    })
+router.get("/balance", authMiddleware, async (req, res) => {
+    try{
+        const account = await Account.findOne({ userId: req.userId });
+    
+        res.json({
+            balance: account.balance
+        })
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).json({message: "Internal server error!"});
+    }
+    
 });
 
 router.post("/transfer", authMiddleware, async(req, res) => {
@@ -24,7 +29,7 @@ router.post("/transfer", authMiddleware, async(req, res) => {
         const {amount, to} = req.body;      
 
         // fetch the accounts within the transaction
-        const account = await Account.findOne({userId: req.userId}).session(session);
+        const account = await Account.findOne({userId: req.userId}).session(session);   // from account
 
         if(!account || account.balance < amount){
             await session.abortTransaction();
