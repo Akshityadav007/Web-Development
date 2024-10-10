@@ -6,3 +6,12 @@
 
 
 ![alt text](image.png)
+
+
+# Ids and passwords:
+1. benakshit007@gmail.com : Akshit#123
+2. Rohit.mehra@gmail.com : Rohit123
+3. jagmohan.reddy : Jagmohan123
+4. Sana.khan : Sana123
+5. Akash_ : Akash123
+6. Rakesh.kumar : Rakesh123

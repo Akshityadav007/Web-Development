@@ -132,19 +132,22 @@ router.put('/', authMiddleware, async (req, res) => {
     // 1. input validation
     const response = updatedBodySchema.safeParse(req.body);
     if(!response.success){
-        return res.status(411).json({message: "Password is too small"});
+        return res.status(411).json({message: "Input validation failed!"});
     }
 
     try{
         // 2. make hash of the updated password  
         if(req.body.password){
             const user = await User.findById(req.userId);
+            if(!user)
+                return res.status(404).json({message: "User not found!"});
+            
             const password_hash = await user.createHash(req.body.password);
             req.body.password = password_hash;
         }
 
         // 3. update changes
-        await User.updateOne({ id: req.userId }, { $set: req.body });
+        await User.findByIdAndUpdate(req.userId, { $set: req.body });
         
         return res.status(200).json({message: "Updated successfully"});
     }

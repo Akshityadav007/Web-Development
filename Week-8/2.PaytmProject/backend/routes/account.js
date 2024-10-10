@@ -33,15 +33,21 @@ router.post("/transfer", authMiddleware, async(req, res) => {
 
         if(!account || account.balance < amount){
             await session.abortTransaction();
-            return res.status(400).json({message: "Insufficient balance"})
+            return res.status(400).json({status: "fail", message: "Insufficient balance"})
         }
 
-        const toAccount = await Account.findOne({ userId: to }).session(session);
+        try{
+            const toAccount = await Account.findOne({ userId: to }).session(session);
 
-        if(!toAccount){
+            if(!toAccount){
+                return res.status(400).json({status: "fail", message: "Invalid account"})
+            }
+        }
+        catch(err){
             await session.abortTransaction();
-            return res.status(400).json({message: "Invalid account"})
+            return res.status(500).json({ status: "error", message: "Internal server error | Invalid account" });
         }
+        
 
 
         // perform transfer
@@ -50,13 +56,13 @@ router.post("/transfer", authMiddleware, async(req, res) => {
 
         // commit the transaction
         await session.commitTransaction();
-        res.status(200).json({
-            message: "Transfer successful"
-        });
+        session.endSession();
+
+        return res.status(200).json({ status: "success", message: "Transfer successful" });
     }
     catch(err){
-        session.abortTransaction();
-        res.status(500).json({message: "Internal server error | Transaction Error!"})
+        await session.abortTransaction();
+        return res.status(500).json({status: "error", message: "Internal server error | Transaction Error!"})
     }
 });
 
