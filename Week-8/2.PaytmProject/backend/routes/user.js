@@ -195,6 +195,21 @@ router.get('/bulk', async (req, res) => {
 });
 
 
+router.get('/me', authMiddleware , async (req, res) => {
+    try{
+        // console.log(req.userId);
+        const user = await User.findById({ _id: req.userId });
+    
+        res.json({
+            firstName: user.firstName, lastName : user.lastName, id: user._id
+        });
+    }
+    catch(e){
+        res.status(400).json({message: "User not found!"});
+    }
+})
+
+
 
 
 module.exports = router;

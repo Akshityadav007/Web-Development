@@ -326,3 +326,7 @@ A completely working backend can be found here - https://github.com/100xdevs-coh
 Try to send a few calls via postman to ensure you are able to signup/signin/get balance.
 
 --> Basically test the backend
+
+
+
+**Note** : I implemented a '/me' route to get current user info later. 
