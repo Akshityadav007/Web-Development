@@ -2,3 +2,5 @@
 2) Why do you use the context API ? (week - 7)
     A. To make rendering more performant. ❌
     B. To make syntax cleaner/get rid of prop drilling.  ✅  
+
+3) What is the difference between type and interface.
