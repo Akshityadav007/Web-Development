@@ -9,9 +9,6 @@
 
 💡 Please keep a MongoDB url handy before you proceed. This will be your primary database for this assignment.
 - Create a free one here - https://www.mongodb.com/
- 
-Explore the repository
-The repo is a basic express + react + tailwind boilerplate
 
 **Backend**
 Express - HTTP Server
@@ -101,7 +98,7 @@ If all goes well, we need to return the user a jwt which has their user id encod
     userId: "userId of newly added user"
 }
 
-💡 Note - We are not hashing passwords before putting them in the database. This is standard practice that should be done, you can find more detaisl here - https://mojoauth.com/blog/hashing-passwords-in-nodejs/
+💡 Note - We are not hashing passwords before putting them in the database. This is standard practice that should be done, you can find more details here - https://mojoauth.com/blog/hashing-passwords-in-nodejs/
 - I am using 'Argon2' (can also use Bcrypt) hashing technique to hash passwords.
 
 Method: POST
