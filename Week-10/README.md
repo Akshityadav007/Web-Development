@@ -762,17 +762,23 @@ Object-Relational Mapping (ORM) is a crucial concept in modern software developm
 
 # What are ORMs?
 Official Definition
+
 ORM: Object-Relational Mapping is a programming technique for converting data between incompatible systems using object-oriented programming languages. It creates a "virtual object database" that developers can interact with using their programming language instead of direct database queries.
 Abstraction: ORMs abstract the complexities of the database, allowing developers to work with database records as if they were objects in their code. This includes handling CRUD operations (Create, Read, Update, Delete) and managing database connections and transactions.
+
 Simplified Definition
+
 Ease of Use: ORMs simplify database interactions by letting developers use the syntax and paradigms of their programming language rather than writing SQL queries. This can make code more readable and maintainable.
-Prisma as an ORM
+
+**Prisma as an ORM**
+
 Prisma is a next-generation ORM that takes the concept of ORMs further by providing additional tools and features that enhance the developer experience:
-Schema Definition: Prisma uses a declarative Prisma schema to define the application's data model. This schema is used to generate a Prisma Client that provides type-safe database access.
-Migrations: Prisma Migrate allows developers to define and perform database schema migrations in a controlled and versioned manner.
-Type Safety: Prisma ensures type safety by generating a client that is tailored to the schema, reducing the risk of runtime errors due to mismatched data types.
-Query Building: Prisma Client provides a fluent API for building queries, which can be more intuitive than writing raw SQL, especially for complex queries.
-Performance: Prisma is designed to be performant and efficient, with a focus on minimizing the overhead typically associated with ORMs.
+
+- Schema Definition: Prisma uses a declarative Prisma schema to define the application's data model. This schema is used to generate a Prisma Client that provides type-safe database access.
+- Migrations: Prisma Migrate allows developers to define and perform database schema migrations in a controlled and versioned manner.
+- Type Safety: Prisma ensures type safety by generating a client that is tailored to the schema, reducing the risk of runtime errors due to mismatched data types.
+- Query Building: Prisma Client provides a fluent API for building queries, which can be more intuitive than writing raw SQL, especially for complex queries.
+- Performance: Prisma is designed to be performant and efficient, with a focus on minimizing the overhead typically associated with ORMs.
  
 ORMs, including Prisma, offer a high-level abstraction over database interactions, making it easier for developers to work with data in the context of their applications.
  
@@ -827,7 +833,7 @@ Modern ORMs, especially those used in statically typed languages or with TypeScr
 
 TypeScript Example with Prisma: When you query the database, the Prisma client provides auto-completion for table names and columns, and the returned data is automatically typed.
 
-```markdown
+```javascript
 // TypeScript understands the structure of the expected result,
 // providing auto-completion and type checking
 const user = await prisma.user.findUnique({
