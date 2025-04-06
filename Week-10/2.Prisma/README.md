@@ -1,0 +1,2 @@
+- We will use Prisma ORM. 
+- To view and edit database, we'll use Prisma Studio (GUI based application).
