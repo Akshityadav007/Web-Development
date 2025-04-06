@@ -1,0 +1,1 @@
+1. Create a database. Insert 1 million entries there. Query the table. Now add index on it and then query it. Learn the difference between querying before and after index.
