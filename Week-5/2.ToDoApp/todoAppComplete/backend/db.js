@@ -1,9 +1,11 @@
 const mg = require("mongoose");
 const { boolean } = require("zod");
+require('dotenv').config();
 
 // this is not how we connect in real world application, we insert it in a .env file.
-mg.connect('mongodb+srv://AkshitYadav:Akshit123@cluster0.y9pwl.mongodb.net/todoApp');
+mg.connect(process.env.mongoUrl);
 // the above URL makes db vulnerable. Anybody can get this URL and login to your db.
+// corrected it by adding it in .env file
 
 
 const todoSchema = mg.Schema({
