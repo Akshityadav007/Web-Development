@@ -1,0 +1,2 @@
+- After setup of prisma (which you can easily get from prisma website), make a src folder. Then change the rootDir, outDir in tsconfig.json.
+- To create a dist folder, rum 'tsc - b' on terminal.

@@ -1,2 +1,6 @@
 - We will use Prisma ORM. 
 - To view and edit database, we'll use Prisma Studio (GUI based application).
+- Prisma lets us connect to a SQL database. It is a replacement of 'pg' library.
+- We need to perfectly define the schema of our database in a language that prisma understands.
+- Follow steps on website of prisma to connect your SQL database.
+- WE DONT NEED ANOTHER POSTGRES DB, PRISMA NOW PROVIDES INBUILT DB.
