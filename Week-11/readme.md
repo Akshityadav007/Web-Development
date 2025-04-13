@@ -63,7 +63,9 @@ After deployment you might see something like below:
     **Wrangler** is the CLI of cloudflare.
 
 - Start the worker locally.
-    `npm run dev`
+    ```
+    npm run dev
+    ```
 - How to return json?
 
 ![alt text](image-4.png)
@@ -98,7 +100,4 @@ How can you do the same in Cloudflare environment?
 - You have to buy a plan to be able to do this.
 - You also need to buy the domain on cloudflare/transfer the domain to cloudflare.
 
-
-```
-We can't use socket.io on serverless functions.
-```
+>We can't use socket.io on serverless functions. They are purely based for **HTTP** requests.
