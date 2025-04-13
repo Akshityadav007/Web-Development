@@ -1,4 +1,4 @@
-Clone the github repo from week 13 of 100x devs, then:
+Clone the github repo[(https://github.com/100xDevs-hkirat/week-13-sql)] from week 13 of 100x devs, then:
 
 **Step 1** => Use 'npm install $(cat packages.txt)' to install all packages.
 **Step 2** =>  Run 'npm run build to get your 'dist' folder created. (Because we run .js files on node not .ts)
