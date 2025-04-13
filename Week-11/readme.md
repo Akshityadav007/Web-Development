@@ -89,9 +89,9 @@ How can you do the same in Cloudflare environment?
 
 
 ## Deploying the website
-- Run 'npx wrangler login' to login first.
-- Run 'npx wrangler whoami' to verify your login (if you want to).
-- Run 'npm run deploy' to deploy.
+- Run ```npx wrangler login``` to login first.
+- Run ```npx wrangler whoami``` to verify your login (if you want to).
+- Run ```npm run deploy``` to deploy.
 - Result should be something like this on the console.
 
 ![alt text](image-6.png)
