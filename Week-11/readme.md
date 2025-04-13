@@ -156,7 +156,7 @@ npm run dev
 
 ## Middlewares
 
-[(https://hono.dev/docs/guides/middleware)]
+[Hono Middleware](https://hono.dev/docs/guides/middleware)
 
 ### Creating a simple auth middleware
 
