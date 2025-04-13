@@ -163,3 +163,13 @@ npm run dev
 ![alt text](image-10.png)
 
 
+
+```
+In short, if we compare cloudflare env to nodejs env
+
+Hono (Cloudflare) ≈ Express.js (Node.js)
+Wrangler (Cloudflare) ≈ Combination of:
+- npm/yarn (package manager)
+- nodemon (auto-reload during development)
+- Deploy tools (e.g., AWS CLI, Heroku CLI, or Docker CLI)
+```

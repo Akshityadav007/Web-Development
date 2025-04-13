@@ -18,6 +18,7 @@ async function authMiddleware(c: any, next: any){
 
 // instead we should pass authMiddleware to only those functions where we need authentication
 // fetch => json
+// c => context
 app.get('/', authMiddleware, async (c) => {
   const body = await c.req.parseBody();
   console.log(body);
