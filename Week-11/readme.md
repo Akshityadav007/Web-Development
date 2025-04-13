@@ -46,7 +46,7 @@ Problems with this approach
 
 # 5. **How cloudflare workers work?**
 
-- ([https://developers.cloudflare.com/workers/reference/how-workers-works/])
+- [How cloudflare workers work](https://developers.cloudflare.com/workers/reference/how-workers-works/)
 
 # 6. **Initializing a worker**
 
@@ -96,10 +96,70 @@ How can you do the same in Cloudflare environment?
 
 ![alt text](image-6.png)
 
-
 ### Assigning a custom domain
 
 - You have to buy a plan to be able to do this.
 - You also need to buy the domain on cloudflare/transfer the domain to cloudflare.
 
 >We can't use socket.io on serverless functions. They are purely based for **HTTP** requests.
+
+
+# What is Hono?
+
+- Visit [Hono Node.js page](https://hono.dev/docs/getting-started/nodejs) for setup.
+- Visit [Hono motivation](https://hono.dev/docs/concepts/motivation) to get clarification.
+
+## What runtime does it support?
+
+![alt text](image-7.png)
+
+## Workers with cloudflare workers - 
+
+1. Initialize a new app
+```
+npm create hono@latest my-hono-app
+```
+Chose 'cloudflare workers' while installing hono packages.
+The result should be somewhat like this - 
+![alt text](image-2.png)
+
+2. Move to my-hono-app and install dependencies.
+```
+cd my-hono-app
+npm i
+```
+
+3. Hello World
+
+![alt text](image-8.png)
+
+4. Getting inputs from user
+
+![alt text](image-9.png)
+
+### Why do we await whenever we fetch a json?
+
+- c.req.json() is asynchronous because:
+    - Reading the request body is I/O-bound
+    - Parsing happens after all data is received
+- So you await to get the real JSON object
+
+⚡ Without await, you're just holding a wrapped gift and never opening it.
+
+
+## Deploy
+
+```
+npm run dev
+```
+
+
+## Middlewares
+
+[(https://hono.dev/docs/guides/middleware)]
+
+### Creating a simple auth middleware
+
+![alt text](image-10.png)
+
+
