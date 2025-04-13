@@ -54,7 +54,9 @@ Worker is just a name given by them of this service.
 To create and deploy your application, you can take the following steps-
 - Initialize a worker.
 
-![alt text](image-2.png)
+```
+npm create cloudflare@latest -- my-first-worker
+```
 
 After deployment you might see something like below:
 ![alt text](image-3.png)
