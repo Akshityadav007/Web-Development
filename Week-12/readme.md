@@ -1,1 +1,0 @@
-- You need to have a AWS account to use it.
